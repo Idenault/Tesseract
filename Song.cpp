@@ -5,7 +5,7 @@ using namespace std;
 
 Song::Song(const string songTitle, const string songComposer, const int sID)
 {
-    cout << "BUILDING!!!";
+    cout << "BUILDING!!!"<<endl;
     titel = songTitle;
     composer = songComposer;
     id = sID;
@@ -14,7 +14,7 @@ Song::Song(const string songTitle, const string songComposer, const int sID)
 
 Song::~Song()
 {
-    cout<<"DESTROYING!!!";
+    cout<<"DESTROYING!!!"<<endl;
 }
 
 Song::Song(Song &copy)

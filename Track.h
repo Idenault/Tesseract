@@ -10,19 +10,19 @@ class Track
 public:
 
 
-    Track(int songID, int albumID, int trackNumber, const Song &trackPointer);
-    ~Track(void);
+    Track(int sID, int aID, int trackNum,  Song* const tPointer);
+    ~Track();
     Track(Track &copy);
     int getSongID() const;
     int getAlbumID() const;
-    int getTrackNumber() const;
-    const Song &getTrackPointer() const;
+    const Song* getTrackPointer() const;
+    string toString() const;
 
 private:
     int songID;
     int albumID;
     int trackNumber;
-    Song trackPointer;
+    Song* trackPointer;
 
 };
 

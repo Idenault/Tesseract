@@ -13,11 +13,11 @@ class Song
 
 public:
 
-    Song(const string songTitle, const string  composer, const int sID);
-    ~Song(void);
+    Song(string songTitle, string  composer,int sID);
+    ~Song();
     Song(Song& copy);
-    int getsongID();
-    string toString();
+    int getsongID()const;
+    string toString()const;
 
 private:
 
@@ -26,6 +26,5 @@ private:
     int id;
 
 };
-
 
 #endif //TESSERACT_TEST_SONG_H

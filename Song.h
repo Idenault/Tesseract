@@ -13,7 +13,7 @@ class Song
 
 public:
 
-    Song(const string &songTitle, const string  &composer, const int &sID);
+    Song(const string songTitle, const string  composer, const int sID);
     ~Song(void);
     Song(Song& copy);
     int getsongID();

@@ -12,7 +12,7 @@ class Recording
 
 public:
 
-    Recording(const string &title, const string &artist, const string &producer, int year, int albumID);
+    Recording(const string title, const string artist, const string producer, int year, int albumID);
     ~Recording();
     Recording(Recording& copy);
     int getAlbumID();

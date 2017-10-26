@@ -11,7 +11,6 @@ public:
 
 
     Track(int sID, int aID, int trackNum,  Song* const tPointer);
-    ~Track();
     Track(Track &copy);
     int getSongID() const;
     int getAlbumID() const;

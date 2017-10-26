@@ -17,14 +17,14 @@ class Database
 {
     public:
         Database();
+        void createSong(const string &songTitle, const string &songComposer, int sID);
+        void createTrack(int sID, int aID, int trackNum);
 
 private:
-        map<string,Recording> recordings; //stores the recordings in a map sorted by album id for quick backwards serching
+        map<int,Recording> recordings; //stores the recordings in a map sorted by album id for quick backwards serching
         vector<User> users; // users are stored in a vector because we will need to iterate throug users and playlists
-        map<string,Song> songs; // songs are sotored in a map sorted by there unique song id
-        map<string,vector<Track>> tracks; // tracks are stored in a map sorted by song id but because there can be duplicate tracks we store the tracks in a vector inside the map
-
-
+        map<int,Song> songs; // songs are sotored in a map sorted by there unique song id
+        map<int,vector<Track>> tracks; // tracks are stored in a map sorted by song id but because there can be duplicate tracks we store the tracks in a vector inside the map
 };
 
 

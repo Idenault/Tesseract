@@ -12,11 +12,6 @@ Song::Song(const string songTitle, const string songComposer, const int sID)
 
 }
 
-Song::~Song()
-{
-    cout<<"DESTROYING!!!"<<endl;
-}
-
 Song::Song(Song &copy)
 {
     cout << "error will robinson ERROR!!!!!! (you need to pass by refrence or pointer)";

@@ -14,7 +14,6 @@ class Song
 public:
 
     Song(string songTitle, string  composer,int sID);
-    ~Song();
     Song(Song& copy);
     int getsongID()const;
     string toString()const;

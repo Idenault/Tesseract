@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Track.h"
 
 
@@ -7,10 +8,6 @@ Track::Track(int sID, int aID, int trackNum,  Song* const tPointer)
     albumID = aID;
     trackNumber =  trackNum;
     trackPointer = tPointer;
-}
-
-Track::~Track() {
-
 }
 
 Track::Track(Track &copy) {

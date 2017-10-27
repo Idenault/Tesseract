@@ -1,12 +1,11 @@
-
-
 #ifndef TESSERACT_TEST_USER_H
 #define TESSERACT_TEST_USER_H
 
 
 #include <string>
 #include <vector>
-#include "Song.h"
+#include "Track.h"
+#include "Playlist.h"
 
 using namespace std;
 
@@ -14,22 +13,22 @@ class User
 {
 public:
 
-
-
-    User(const string id, const string name, vector<vector<Song*>> pLists, vector<string> pLNames);
-    ~User(void);
+    User(string id, string name, vector<Playlist> pLists);
+    ~User();
     User(User& copy);
-    string &getUserID();
-    string &getName();
-    vector<vector<Song>> &getPlaylists();
-    vector<string> &getPlaylistNames();
+    string getUserID();
+    string getName();
+    vector<Playlist> getPlaylists();
+    void addPlaylist(string pLname, int pLID);
+    void removePlaylist(string pLname);
+    void removePlaylist(int pLID);
+
 
 private:
 
     string userID;
-    string name;
-    vector<vector<Song>> playlists;
-    vector<string> playlistNames;
+    string userName;
+    vector<Playlist> playlists;
 
 };
 

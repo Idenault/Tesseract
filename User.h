@@ -13,12 +13,12 @@ class User
 {
 public:
 
-    User(string id, string name, vector<Playlist> pLists);
+    User(string id, string name);
     ~User();
     User(User& copy);
     string getUserID();
     string getName();
-    vector<Playlist> getPlaylists();
+    vector<Playlist*> getPlaylists();
     void addPlaylist(string pLname, int pLID);
     void removePlaylist(string pLname);
     void removePlaylist(int pLID);
@@ -28,7 +28,7 @@ private:
 
     string userID;
     string userName;
-    vector<Playlist> playlists;
+    vector<Playlist*> playlists;
 
 };
 

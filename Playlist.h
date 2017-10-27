@@ -18,7 +18,7 @@ public:
     int getID();
     string getName();
     vector<Track*> getTracksInPlaylist();
-    void addTrackToPlaylist(Track track);
+    void addTrackToPlaylist(Track* track);
     void removeTrackFromPlaylist(Track track);
     string toString();
 

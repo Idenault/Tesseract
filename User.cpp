@@ -5,10 +5,9 @@
 #include "Playlist.h"
 #include "User.h"
 
-User::User(string id, string name, vector<Playlist> pLists) {
+User::User(const string id, const string name) {
     userID = id;
     userName = name;
-    playlists = pLists;
 }
 
 User::User(User &copy) {
@@ -27,16 +26,16 @@ string User::getName() {
     return userName;
 }
 
-vector<Playlist> User::getPlaylists() {
+vector<Playlist*> User::getPlaylists() {
     return playlists;
 }
 
-void User::addPlaylist(string pLName, int pLID) {
+void User::addPlaylist(const string pLName, int pLID) {
     Playlist* temp = new Playlist(pLName, pLID);
-    playlists.push_back(*temp);
-    cout << "I have no idea what this will print. An address maybe? if it prints an object, then fuck yeah! ... i think. I don't know, maybe this works: " << temp->toString();
+    playlists.push_back(temp);
 }
 
+/*
 void User::removePlaylist(int pLID) {
     for (int i=0; i < playlists.size(); i ++){
         if (pLID == playlists[i].getID()){
@@ -52,3 +51,4 @@ void User::removePlaylist(string pLname) {
         }
     }
 }
+*/

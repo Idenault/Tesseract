@@ -17,17 +17,25 @@ class Database
 {
     public:
         Database();
-        void createSong(const string &songTitle, const string &songComposer, int sID);
-        void createRecording(const string t, const string a, const string p, int y, int aID);
-        void creatUser(const string id, const string name, vector<Playlist> pLists);
+        void createSong(string songTitle,string songComposer, int sID);
+        void createRecording(string t, string a,string p, int y, int aID);
+        void creatUser(string id, string name);
         void createTrack(int sID, int aID, int trackNum);
         void removeRecording(int albumID);
+        void removeTrackFromPlaylists(int songID);
+        void removeTrackFromTrack(int songID);
+        void removeTrack(int songID);
+        map<int, Recording*>* getRecordings();
+        vector<User *>* getUsers();
+        map<int, Song *>* getSongs();
+        map<int, vector<Track *>>* getTracks();
 
 private:
-        map<int,Recording> recordings; //stores the recordings in a map sorted by album id for quick backwards serching
-        vector<User> users; // users are stored in a vector because we will need to iterate throug users and playlists
-        map<int,Song> songs; // songs are sotored in a map sorted by there unique song id
-        map<int,vector<Track>> tracks; // tracks are stored in a map sorted by song id but because there can be duplicate tracks we store the tracks in a vector inside the map
+        map<int,Recording*> recordings;
+        vector<User*> users;
+        map<int,Song*> songs;
+        map<int,vector<Track*>> tracks;
+
 };
 
 

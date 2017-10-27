@@ -30,8 +30,11 @@ void Database::creatUser(const string id, const string name)
 
 void Database::removeRecording(int albumID)
 {
-    delete(recordings[albumID]);
-    recordings.erase(recordings.find(albumID));
+    if(recordings.find(albumID)!= recordings.end())
+    {
+        delete(recordings[albumID]);
+        recordings.erase(recordings.find(albumID));
+    }
 }
 
 void Database::removeTrackFromTrack(int songID)
@@ -75,6 +78,24 @@ void Database::removeTrack(int songID)
     removeTrackFromPlaylists(songID);
 }
 
+void Database::removeSongFromSongs(int songID)
+{
+    if(songs.find(songID)!=songs.end())
+    {
+        delete(songs[songID]);
+        songs.erase(songs.find(songID));
+    }
+
+}
+
+void Database::removeSong(int songID)
+{
+    removeSongFromSongs(songID);
+    removeTrack(songID);
+}
+
+
+// generically uninteresting  Getter methods
 
 map<int, Recording *>* Database::getRecordings(){
     return &recordings;

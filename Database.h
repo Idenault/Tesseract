@@ -25,6 +25,8 @@ class Database
         void removeTrackFromPlaylists(int songID);
         void removeTrackFromTrack(int songID);
         void removeTrack(int songID);
+        void removeSongFromSongs(int songID);
+        void removeSong(int songID);
         map<int, Recording*>* getRecordings();
         vector<User *>* getUsers();
         map<int, Song *>* getSongs();

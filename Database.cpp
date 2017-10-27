@@ -21,7 +21,7 @@ void Database::createTrack(int sID, int aID, int trackNum)
      recordings[aID]= *new Recording(t,a,p,y,aID);
  }
 
-void Database::  creatUser(const string id, const string name, vector<vector<Track*>> pLists)
+void Database::  creatUser(const string id, const string name, vector<Playlist> pLists)
 {
     users.push_back(*new User(id,name,pLists));
 }

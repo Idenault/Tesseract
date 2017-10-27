@@ -38,13 +38,13 @@ class Database
         map<int, Recording*>* getRecordings();
         vector<User *>* getUsers();
         map<int, Song *>* getSongs();
-        map<int, vector<Track *>>* getTracks();
+        map<int, Track*>* getTracks();
 
 private:
         map<int,Recording*> recordings;
         vector<User*> users;
         map<int,Song*> songs;
-        map<int,vector<Track*>> tracks;
+        map<int,Track*> tracks;
 
 };
 

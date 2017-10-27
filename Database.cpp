@@ -16,7 +16,7 @@ void Database::createTrack(int sID, int aID, int trackNum)
 {
     if(songs.find(sID) != songs.end())
     {
-        tracks[sID].push_back(new Track(sID,aID,trackNum,songs[sID]));
+        tracks[sID] = new Track(sID,aID,trackNum,songs[sID]);
     }
 }
 void Database::createRecording(const string t, const string a, const string p, int y, int aID)
@@ -39,7 +39,7 @@ void Database::addTrackToPlaylist(int songID, string userID, const string plName
                 {
                     if(users[i]->getPlaylists()[j]->getName() == plName)
                     {
-                        users[i]->getPlaylists()[j]->addTrackToPlaylist(tracks[songID][0]); // need to reevalaute this cause we need to be able to serch tracks by track id
+                        users[i]->getPlaylists()[j]->addTrackToPlaylist(tracks[songID]); // need to reevalaute this cause we need to be able to serch tracks by track id
                     }
                     else if(j==users[i]->getPlaylists().size()-1); //invalid playlist
 
@@ -80,12 +80,8 @@ void Database::removeTrackFromTrack(int songID)
 {
     if(tracks.find(songID)!= tracks.end())
     {
-        Track* temp = tracks[songID][0];
-        for (int i = 0; i <tracks[songID].size() ; ++i)
-        {
-            tracks.erase(tracks.find(songID));
-        }
-        delete(temp);
+        delete(tracks[songID]);
+        tracks.erase(tracks.find(songID));
     }
     else {//do nothing
     }
@@ -192,7 +188,7 @@ vector<User *>* Database::getUsers(){
 map<int, Song *>* Database::getSongs(){
     return &songs;
 }
-map<int, vector<Track *>>* Database::getTracks(){
+map<int,Track *>* Database::getTracks(){
     return &tracks;
 }
 

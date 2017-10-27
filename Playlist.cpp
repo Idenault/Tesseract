@@ -34,15 +34,6 @@ void Playlist::addTrackToPlaylist(Track* track) {
     tracksInPlaylist.push_back(track);
 }
 
-/*
-void Playlist::removeTrackFromPlaylist(Track track) {
-    for (int i=0; i < tracksInPlaylist.size(); i++){
-        if (tracksInPlaylist[i] == &track){
-            tracksInPlaylist.erase(tracksInPlaylist.begin()+i);
-        }
-    }
-}*/
-
 string Playlist::toString() {
     cout << "Displaying playlist: " << name << " ID: " << id << "\n";
     for (int i=0; i < tracksInPlaylist.size(); i++){

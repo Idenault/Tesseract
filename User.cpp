@@ -35,20 +35,3 @@ void User::addPlaylist(const string pLName, int pLID) {
     playlists.push_back(temp);
 }
 
-/*
-void User::removePlaylist(int pLID) {
-    for (int i=0; i < playlists.size(); i ++){
-        if (pLID == playlists[i].getID()){
-            playlists.erase(playlists.begin()+i);
-        }
-    }
-}
-
-void User::removePlaylist(string pLname) {
-    for (int i=0; i < playlists.size();i++){
-        if (pLname == playlists[i].getName()){
-            playlists.erase(playlists.begin()+i);
-        }
-    }
-}
-*/

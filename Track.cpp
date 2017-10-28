@@ -2,8 +2,9 @@
 #include "Track.h"
 
 
-Track::Track(int sID, int aID, int trackNum,  Song* const tPointer)
+Track::Track(int sID, int aID, int trackNum, Song* const tPointer)
 {
+    cout << "BUILDING A TRACK!!!!"<<endl;
     songID = sID;
     albumID = aID;
     trackNumber =  trackNum;
@@ -11,7 +12,12 @@ Track::Track(int sID, int aID, int trackNum,  Song* const tPointer)
 }
 
 Track::Track(Track &copy) {
+    cout << "this Should not happen"<<endl;
+}
 
+Track::~Track()
+{
+    cout<<"DESTROYING A TRACK!!!!"<<endl;
 }
 
 int Track::getSongID() const {
@@ -27,6 +33,11 @@ const Song* Track::getTrackPointer() const{
 }
 
 string Track::toString() const{
-    return trackPointer->toString() + " track: " + to_string(trackNumber);
+    return trackPointer->toString() + " TRACK: " + to_string(trackNumber);
 }
 
+ostream& operator<<(ostream& out, const Track& trackObject)
+{
+    out<<trackObject.toString()<<endl;
+    return out;
+}

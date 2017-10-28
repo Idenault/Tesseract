@@ -11,6 +11,7 @@ public:
 
 
     Track(int sID, int aID, int trackNum,  Song* const tPointer);
+    ~Track();
     Track(Track &copy);
     int getSongID() const;
     int getAlbumID() const;
@@ -25,5 +26,6 @@ private:
 
 };
 
+ostream& operator<<(ostream& out, const Track& trackObject);
 
 #endif //TESSERACT_TEST_TRACK_H

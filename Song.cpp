@@ -1,20 +1,27 @@
 #include <iostream>
 #include "Song.h"
+#include "str_util.h"
+
 
 using namespace std;
 
 Song::Song(const string songTitle, const string songComposer, const int sID)
 {
-    cout << "BUILDING!!!"<<endl;
+    cout << "BUILDING A SONG!!!"<<endl;
     titel = songTitle;
     composer = songComposer;
     id = sID;
 
 }
 
+Song::~Song()
+{
+    cout<<"DESTROYING A SONG!!!!"<<endl;
+}
+
 Song::Song(Song &copy)
 {
-    cout << "error will robinson ERROR!!!!!! (you need to pass by refrence or pointer)";
+    cout << "this Should not happen";
 }
 
 int Song::getsongID() const {
@@ -23,7 +30,11 @@ int Song::getsongID() const {
 
 string Song::toString()const
 {
-    return to_string(id)+ " " + titel + " " + composer;
+    return "SONG ID: " + to_string(id)+ " SONG NAME: " + formater.toTitleCase(titel) + " COMPOSER: " + formater.toTitleCase(composer);
 }
 
-
+ostream& operator<<(ostream& out, const Song& songObject)
+{
+    out<<songObject.toString()<<endl;
+    return out;
+}

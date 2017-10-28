@@ -8,7 +8,7 @@
 using namespace std;
 int main()
 {
-    string songName  = "Brown Eyed Brown Eye";
+    string songName  = "The Brown Eyed Brown Eye";
     string bandName = "The Browns";
     string userName = "ShitHead123";
     string userID = "001";
@@ -19,12 +19,18 @@ int main()
     Database dB;
 
     dB.createSong(songName,bandName,sID);
+
+    //cout<<*dB.getSongs()->at(sID);
     dB.createTrack(sID,albumID,1);
+    //cout<<*dB.getTracks()->at(sID);
     dB.createRecording(songName,bandName,userName,1000,albumID);
+    cout<<*dB.getRecordings()->at(albumID);
     dB.creatUser(userName,userID);
-    cout<<dB.getRecordings()->operator[](1)->getAlbumID();
+
+
     dB.removeRecording(albumID);
     dB.removeTrackFromTrack(sID);
+    dB.removeSongFromSongs(sID);
 
 
 

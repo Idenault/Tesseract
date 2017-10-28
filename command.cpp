@@ -1,3 +1,4 @@
+
 #include <string>
 #include <vector>
 #include <sstream>
@@ -156,6 +157,7 @@ void Command::parseAndEditDB(string cmdStr) {
 				int trackNum = stoi(*++it);
 
 				db.createTrack(songID, albumID, trackNum);
+				db.addTrackToRecording(albumID, songID);
 
 				cout << "Adding Track: " << songID << " " << trackNum << " to recording " << " " << albumID << "\n";
 				break;
@@ -188,6 +190,7 @@ void Command::parseAndEditDB(string cmdStr) {
 				break;
 			}
 
+
 			//if thing being added is a track to a playlist
 			else if (*it == "-l" && tokens.size() == 5){
 
@@ -201,10 +204,11 @@ void Command::parseAndEditDB(string cmdStr) {
 				break;
 			}
 			else {
-				cout << "Unrecognized add command. Type .help for examples of proper syntax.\n";
+				cout << "Unrecognized add command. Type .help for examples of proper syntax." << endl;
 				break;
 			}
 		}
+
 
 		//if removing something
 		if(*it == CMD_DELETE){
@@ -216,7 +220,7 @@ void Command::parseAndEditDB(string cmdStr) {
 
 				db.removeSong(songID);
 
-				cout << "Removing Song: " << songID << "\n";
+				cout << "Removing Song: " << songID << endl;
 				break;
 
 			}
@@ -227,14 +231,20 @@ void Command::parseAndEditDB(string cmdStr) {
 
 				db.removeRecording(albumID);
 
-				cout << "Removing Recording: " << albumID << "\n";
+				cout << "Removing Recording: " << albumID << endl;
 				break;
 
 			}
 
 			//if thing being removed is a track from a recording
 			else if (*it == "-t" && tokens.size() == 4){
-				////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				int songID = stoi(*++it);
+				int albumID = stoi(*++it);
+
+				db.removeTrackFromRecording(albumID, songID);
+
+				cout << "Removing track/song: " << songID << " from Recording: " << albumID << endl;
+				break;
 
 			}
 
@@ -273,7 +283,7 @@ void Command::parseAndEditDB(string cmdStr) {
 
 			//else print "you're dumb"
 			else{
-				cout << "Unrecognized delete command. Type .help for examples of proper syntax.";
+				cout << "Unrecognized delete command. Type .help for examples of proper syntax." << endl;
 				break;
 			}
 
@@ -285,17 +295,49 @@ void Command::parseAndEditDB(string cmdStr) {
 			it++;
 
 			//if thing being shown is all songs
-			
+			if (*it == "songs" && tokens.size() == 2){
+
+				db.showSongs();
+				break;
+			}
 
 			//if thing being show is all users
+			else if (*it == "users" && tokens.size() == 2){
+				db.showUsers();
+				break;
+			}
 
-			//if thing being shown is all playlist
+			//if thing being shown is all playlist belonging to a user
+			else if (*it == "playlists" && tokens.size() == 3){
+				string userID = *++it;
+				db.showUserPlaylists(userID);
+				break;
+			}
 
 			//if thing being shown is all tracks in a playlist
+			else if (*it == "songs" && tokens.size() == 4){
+				string userID = *++it;
+				string playlistName = *++it;
+
+				db.showSongsInPlaylist(userID, playlistName);
+				break;
+			}
 
 			//if thing being shown is all recordings
+			else if (*it == "recordings" && tokens.size() == 2){
+				db.showRecordingsWithoutTracks();
+				break;
+			}
 
 			//if thing being shown is all tracks
+			else if (*it == "tracks" && tokens.size() == 2){
+				db.showTracks();
+				break;
+			}
+
+			else{
+				cout << "Unrecognized show command. Type .help for examples of proper syntax." << endl;
+			}
 		}
 	}
 }

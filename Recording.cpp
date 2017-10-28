@@ -27,6 +27,13 @@ int Recording::getAlbumID() const{
     return albumID;
 }
 
+vector<Track*> Recording::getTracks() {
+    return tracks;
+}
+void Recording::addTrack(Track* trackPointer){
+    tracks.push_back(trackPointer);
+}
+
 ostream& operator<<(ostream& out, const Recording& recordingObject)
 {
     out<<recordingObject.toString()<<endl;

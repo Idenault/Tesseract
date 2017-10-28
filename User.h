@@ -21,7 +21,7 @@ public:
     vector<Playlist*> getPlaylists();
     void addPlaylist(string pLname, int pLID);
     void removePlaylist(string pLname);
-    void removePlaylist(int pLID);
+    string toString()const;
 
 
 private:
@@ -31,6 +31,6 @@ private:
     vector<Playlist*> playlists;
 
 };
-
+ostream& operator<<(ostream& out, const User& userObject);
 
 #endif //TESSERACT_TEST_USER_H

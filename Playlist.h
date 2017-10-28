@@ -27,6 +27,6 @@ private:
     int id;
     vector<Track*> tracksInPlaylist;
 };
-
+ostream& operator<<(ostream& out, Playlist& pLObject);
 
 #endif //TESSERACT_PLAYLIST_H

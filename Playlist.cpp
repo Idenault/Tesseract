@@ -7,12 +7,13 @@
 using namespace std;
 
 Playlist::Playlist(string playlistName, int playlistID) {
+    cout << "BUILDING A PLAYLIST!!!!"<<endl;
     name = playlistName;
     id = playlistID;
 }
 
 Playlist::~Playlist() {
-    cout << "Destroying Playlist. Name: " << name << " ID: " << id;
+    cout << "DESTROYING A PLAYLIST!!!!"<<endl;
 }
 Playlist::Playlist(Playlist &copy) {
     cout << "Copy constructor made.";
@@ -35,8 +36,23 @@ void Playlist::addTrackToPlaylist(Track* track) {
 }
 
 string Playlist::toString() {
-    cout << "Displaying playlist: " << name << " ID: " << id << "\n";
-    for (int i=0; i < tracksInPlaylist.size(); i++){
-        cout <<"SONG: "<<(tracksInPlaylist[i])->toString() << "\n";
+    string returnStr = "Displaying playlist: " + name + " ID: "  + to_string(id)+ "\n";
+
+    if(tracksInPlaylist.size()>0)
+    {
+        for (int i=0; i < tracksInPlaylist.size(); i++)
+        {
+            returnStr += tracksInPlaylist[i]->toString() + "\n";
+        }
     }
+    else{
+        returnStr += "This Is an Empty Playlist";
+    }
+    return returnStr;
+}
+
+ostream& operator<<(ostream& out, Playlist& pLObject)
+{
+    out<<pLObject.toString()<<endl;
+    return out;
 }

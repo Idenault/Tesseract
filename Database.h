@@ -17,6 +17,7 @@ class Database
 {
     public:
         Database();
+
         //object creation
         void createSong(string songTitle,string songComposer, int sID);
         void createRecording(string t, string a,string p, int y, int aID);
@@ -24,6 +25,7 @@ class Database
         void createTrack(int sID, int aID, int trackNum);
         void addTrackToPlaylist(int songID,string userID, string plName);
         void addPlaylistToUser(string userID,string plName,int plID);
+
         //object deletion
         void removeRecording(int albumID);
         void removeTrackFromPlaylists(int songID);
@@ -34,11 +36,20 @@ class Database
         void removeUserFromUsers(string userID);
         void removePlaylistFromUsers(string userID, string plName);
         void removeTrackFromPlaylistByName(string userID, string plName, int songID);
+
         //getters
         map<int, Recording*>* getRecordings();
         vector<User *>* getUsers();
         map<int, Song *>* getSongs();
         map<int, Track*>* getTracks();
+
+        //Show methods
+        void showSongs();
+        void showTracks();
+        void showRecordingsWithTracks();
+        void showRecordingsWithoutTracks();
+        void showUsers();
+        void showUserPlaylists();
 
 private:
         map<int,Recording*> recordings;

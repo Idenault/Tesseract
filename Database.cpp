@@ -54,12 +54,11 @@ void Database::addTrackToPlaylist(int songID, string userID, const string plName
 }
 void Database::addPlaylistToUser(const string userID, const string plName, int plID)
 {
-
     for (int i = 0; i <users.size(); ++i)
     {
         if(users[i]->getUserID() == userID)
         {
-            users[i]->getPlaylists().push_back(new Playlist(plName,plID));
+            users[i]->addPlaylist(plName,plID);
         }
         else if(i==users.size()-1); //invalid user
     }
@@ -141,15 +140,7 @@ void Database::removePlaylistFromUsers(const string userID, const string plName)
     {
         if(users[i]->getUserID() == userID)
         {
-            for (int j = 0; j <users[i]->getPlaylists().size() ; ++j)
-            {
-                if(users[i]->getPlaylists()[j]->getName() == plName)
-                {
-                    delete(users[i]->getPlaylists()[j]);
-                    users[i]->getPlaylists().erase( users[i]->getPlaylists().begin()+j);
-                }
-
-            }
+            users[i]->removePlaylist(plName);
         }
     }
 
@@ -175,6 +166,41 @@ void Database::removeTrackFromPlaylistByName(const string userID, const string p
     }
 
 }
+
+//Show methods
+
+void Database::showSongs()
+{
+    for(auto& kv: songs)
+    {
+        cout<<kv.second->toString()<<endl;
+    }
+}
+void Database::showTracks()
+{
+    for(auto& kv: tracks)
+    {
+        cout<<kv.second->toString()<<endl;
+    }
+}
+void Database::showRecordingsWithTracks(){}
+void Database::showRecordingsWithoutTracks()
+{
+    for(auto& kv: recordings)
+    {
+        cout<<kv.second->toString()<<endl;
+    }
+}
+void Database::showUsers()
+{
+    for(auto& u: users)
+    {
+        cout<<u->toString()<<endl;
+    }
+}
+void Database::showUserPlaylists(){}
+
+
 
 
 // generically uninteresting  Getter methods

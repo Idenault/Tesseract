@@ -4,7 +4,7 @@
 
 Track::Track(int sID, int aID, int trackNum, Song* const tPointer)
 {
-    //cout << "BUILDING A TRACK!!!!"<<endl;
+    cout << "BUILDING A TRACK!!!!"<<endl;
     songID = sID;
     albumID = aID;
     trackNumber =  trackNum;
@@ -17,7 +17,7 @@ Track::Track(Track &copy) {
 
 Track::~Track()
 {
-    //cout<<"DESTROYING A TRACK!!!!"<<endl;
+    cout<<"DESTROYING A TRACK!!!!"<<endl;
 }
 
 int Track::getSongID() const {

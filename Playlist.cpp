@@ -13,7 +13,7 @@ Playlist::Playlist(string playlistName, int playlistID) {
 }
 
 Playlist::~Playlist() {
-   cout << "DESTROYING A PLAYLIST!!!!"<<endl;
+    cout << "DESTROYING A PLAYLIST!!!!"<<endl;
 }
 Playlist::Playlist(Playlist &copy) {
     cout << "Copy constructor made.";

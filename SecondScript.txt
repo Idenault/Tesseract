@@ -51,7 +51,7 @@ delete -p "songs" "cindy"
 
 
 show songs "cindy" "songs"
-//   No songs in "cindy"'s playlist "shows" since playlist was just deleted.
+//   No songs in "cindy"'s playlist "songs" since playlist was just deleted.
 show playlists "cindy"
 show songs "cindy" "help"
 

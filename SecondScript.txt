@@ -1,12 +1,3 @@
-//delete  //delete data from collections
-//    delete -s song_id 							//delete song from playlists, tracks, songs, and recordings x
-//    delete -l song_id playlist_name user_id 	//delete song from playlist
-//    delete -r recording_id 						//delete recording			x
-//    delete -u user_id 							//delete user 				x
-//   delete -p playist_name user_id 				//delete user playlist
-//   delete -t song_id recording_id				//delete track from recording 	x
-
-
 
 //show stuff
 show songs
@@ -60,7 +51,8 @@ delete -p "songs" "cindy"
 
 
 show songs "cindy" "songs"
-//   No songs in "cindy"'s playlist "shows" since playlist was just deleted.
+//   No songs in "cindy"'s playlist "songs" since playlist was just deleted.
+show playlists "cindy"
 show songs "cindy" "help"
 
 

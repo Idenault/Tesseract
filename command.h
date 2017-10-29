@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "Database.h"
+
 using namespace std;
 
 /*
@@ -53,6 +54,8 @@ const string DevCommands[] = {
 const int NumberOfDevCommands = 4;
 
 
+
+
 class Command
 {
   public:   
@@ -63,14 +66,13 @@ class Command
    bool isCommand(string aCommandName);
    bool isUICommand();
    bool isAppCommand();
-   bool isDevCommand();
-   
-  private:
-   string commandString; //command string;
-   vector<string> tokens; //parsed command tokens
-	Database db;
-   void parseAndEditDB(string commandString); //parse the command string
-   
+	void parseAndEditDB(); //parse and return the command string
+	vector<string> getTokens();
+	bool isDevCommand();
+private:
+	string commandString; //command string;
+	vector<string> tokens; //parsed command tokens
+
 };
 
 #endif

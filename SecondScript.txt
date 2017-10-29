@@ -1,10 +1,10 @@
 //delete  //delete data from collections
-//    delete -s song_id 							//delete song from playlists, tracks, songs, and recordings
+//    delete -s song_id 							//delete song from playlists, tracks, songs, and recordings x
 //    delete -l song_id playlist_name user_id 	//delete song from playlist
-//    delete -r recording_id 						//delete recording
-//    delete -u user_id 							//delete user
+//    delete -r recording_id 						//delete recording			x
+//    delete -u user_id 							//delete user 				x
 //   delete -p playist_name user_id 				//delete user playlist
-//   delete -t song_id recording_id				//delete track from recording
+//   delete -t song_id recording_id				//delete track from recording 	x
 
 
 
@@ -18,15 +18,15 @@ show recordings
 show tracks
 
 //delete songs
-delete -s 1022 "Hold Me Tight" "Paul McCartney, John Lennon"
-delete -s 1023 "I Wanna Be Your Man" "Paul McCartney, John Lennon"
-delete -s 1024 "Devil In Her Heart" "Richard Drapkin"
-delete -s 1025 "Not A Second Time" "Paul McCartney, John Lennon"
-delete -s 1026 "Money (That's What I Want)" "Janie Bradford, Berry Gordy"
-delete -s 1027 "A Hard Day's Night" "John Lennon, Paul McCartney"
-delete -s 1028 "I Should Have Known Better" "John Lennon, Paul McCartney"
-delete -s 1029 "If I Fell" "John Lennon, Paul McCartney"
-delete -s 1030 "I'm Happy Just To Dance With You" "John Lennon, Paul McCartney"
+delete -s 1022
+delete -s 1023
+delete -s 1024
+delete -s 1025
+delete -s 1026
+delete -s 1027
+delete -s 1028
+delete -s 1029
+delete -s 1030
 
 //delete tracks from recordings
 //delete -t song_id recording_id
@@ -47,12 +47,23 @@ delete -r 111
 
 
 //delete songs from playlists
-//delete -l song_id playlist_name user_id
+delete -l 1055 "help" "cindy"
+delete -l 1056 "help" "cindy"
+delete -l 1057 "help" "cindy"
+delete -l 1058 "help" "cindy"
+delete -l 1059 "help" "cindy"
+delete -l 1070 "ajones" "driving"
+delete -l 1070 "ajones" "favourites"
 
 //delete playlists
+delete -p "songs" "cindy"
 
+
+show songs "cindy" "songs"
+//   No songs in "cindy"'s playlist "shows" since playlist was just deleted.
 
 
 
 //delete users
-
+delete -u "cindy"
+show users

@@ -182,7 +182,7 @@ void Database::removeTrackFromPlaylistByName(const string userID, const string p
 {
 	for (int i = 0; i <users.size() ; ++i)
 	{
-		if(users[i]->getName()== userID)
+		if(users[i]->getUserID()== userID)
 		{
 
 			for (int j = 0; j <users[i]->getPlaylists().size() ; ++j)
@@ -195,6 +195,7 @@ void Database::removeTrackFromPlaylistByName(const string userID, const string p
 						{
 							users[i]->getPlaylists()[j]->getTracksInPlaylist()[k] = users[i]->getPlaylists()[j]->getTracksInPlaylist().back();
 							users[i]->getPlaylists()[j]->getTracksInPlaylist().pop_back();
+
 						}
 					}
 				}
@@ -230,7 +231,6 @@ void Database::removeTrackFromAllRecordings(int songID) {
 		for(int j=0; j < r.second->getTracks().size(); j++){
 
 			if (r.second->getTracks()[j]->getSongID() == songID){
-				cout<<"mother Fucker";
 
 				r.second->getTracks()[j]=r.second->getTracks().back();
 				r.second->getTracks().pop_back();
@@ -288,12 +288,12 @@ void Database::showUserPlaylists(string userID)
 
 	for(auto& u: users){
 
-			if (u->getUserID() == userID){
+		if (u->getUserID() == userID){
 
-				for(auto& p : u->getPlaylists()){
+			for(auto& p : u->getPlaylists()){
 
-					cout << p->toString()<<endl;
-					break;
+				cout << p->toString()<<endl;
+				break;
 			}
 		}
 	}

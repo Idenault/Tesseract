@@ -18,6 +18,7 @@ void Database::createTrack(int sID, int aID, int trackNum)
 	{
 		tracks[sID] = new Track(sID,aID,trackNum,songs[sID]);
 	}
+	else{cout<<"SONG NOT FOUND, IF YOU WANT TO ADD A TRACK YOU MUST ADD A SONG FIRST"<<endl;}
 }
 void Database::createRecording(const string t, const string a, const string p, int y, int aID)
 {
@@ -41,14 +42,14 @@ void Database::addTrackToPlaylist(int songID, string userID, const string plName
 					{
 						users[i]->getPlaylists()[j]->addTrackToPlaylist(tracks[songID]); // need to reevalaute this cause we need to be able to serch tracks by track id
 					}
-					else if(j==users[i]->getPlaylists().size()-1); //invalid playlist
+					else if(j==users[i]->getPlaylists().size()-1); {cout<<"PLAYLIST NOT FOUND, PLEASE CREATE A PLAYLIST FIRST"<<endl;}
 
 				}
 			}
-			else if(i==users.size()-1); //invalid user
+			else if(i==users.size()-1){cout<<"USER NOT FOUND, USER MUST EXIST TO ADD TO A PLAYLIST"<<endl;}
 		}
 	}
-	else; // invalid track
+	else{cout<<"TRACK NOT FOUND, IF YOU MUST CREATE A TRACK BEFORE YOU CAN ADD IT TO A PLAYLIST"<<endl;}
 
 
 }
@@ -61,11 +62,10 @@ void Database::addPlaylistToUser(const string userID, const string plName, int p
 		{
 			users[i]->getPlaylists().push_back(new Playlist(plName,plID));
 		}
-		else if(i==users.size()-1); //invalid user
+		else if(i==users.size()-1){cout<<"USER NOT FOUND, USER MUST EXIST TO ADD TO A PLAYLIST"<<endl;}
 	}
 
 }
-
 void Database::addTrackToRecording(const int albumID, const int songID){
 
 	if(tracks.find(songID) != tracks.end())
@@ -74,10 +74,11 @@ void Database::addTrackToRecording(const int albumID, const int songID){
 		{
 			recordings[albumID]->addTrack(tracks[songID]);
 		}
+		else{cout<<"RECORDING NOT FOUND, RECORDING MUST EXIST TO ADD A TRACKK TO RECORDING"<<endl;}
 
 	}
 
-	else; // invalid track
+	else{cout<<"TRACK NOT FOUND, IF YOU MUST CREATE A TRACK BEFORE YOU CAN ADD IT TO A PLAYLIST"<<endl;}
 
 }
 
@@ -90,6 +91,7 @@ void Database::removeRecording(int albumID)
 		delete(recordings[albumID]);
 		recordings.erase(recordings.find(albumID));
 	}
+	else{cout<<"RECORDING NOT FOUND"<<endl;}
 }
 void Database::removeTrackFromTrack(int songID)
 {
@@ -97,8 +99,6 @@ void Database::removeTrackFromTrack(int songID)
 	{
 		delete(tracks[songID]);
 		tracks.erase(tracks.find(songID));
-	}
-	else {//do nothing
 	}
 }
 void Database::removeTrackFromPlaylists(int songID)
@@ -146,6 +146,7 @@ void Database::removeUserFromUsers(const string userID)
 			delete(users[i]);
 			users.erase(users.begin()+i);
 		}
+		else if(i==users.size()-1){cout<<"USER NOT FOUND"<<endl;}
 	}
 }
 void Database::removePlaylistFromUsers(const string userID, const string plName)
@@ -161,9 +162,12 @@ void Database::removePlaylistFromUsers(const string userID, const string plName)
 					delete(users[i]->getPlaylists()[j]);
 					users[i]->getPlaylists().erase( users[i]->getPlaylists().begin()+j);
 				}
+				else if(i==users[i]->getPlaylists().size()-1){cout<<"PLAYLIST NOT FOUND"<<endl;}
 
 			}
 		}
+		else if(i==users.size()-1){cout<<"USER NOT FOUND"<<endl;}
+
 	}
 
 }

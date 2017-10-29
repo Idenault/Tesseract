@@ -16,7 +16,7 @@ void MyTunes::run()
 {
 	//start user interface
 
-	view.run(); 
+	view.run();
 
 }
 void MyTunes::executeCommand(Command cmd){
@@ -207,13 +207,18 @@ void MyTunes::executeCommand(Command cmd){
 
 			//if thing being shown is all songs
 			if (*it == "songs" && tokens.size() == 2){
-				cout << "trying to show songs" << endl;
+
+				cout << "Showing all songs." << endl;
+
 				db.showSongs();
 				break;
 			}
 
 				//if thing being show is all users
 			else if (*it == "users" && tokens.size() == 2){
+
+				cout << "Showing all users." << endl;
+
 				db.showUsers();
 				break;
 			}
@@ -221,6 +226,9 @@ void MyTunes::executeCommand(Command cmd){
 				//if thing being shown is all playlist belonging to a user
 			else if (*it == "playlists" && tokens.size() == 3){
 				string userID = *++it;
+
+				cout << "Showing all playlists of: " << userID << endl;
+
 				db.showUserPlaylists(userID);
 				break;
 			}
@@ -230,18 +238,24 @@ void MyTunes::executeCommand(Command cmd){
 				string userID = *++it;
 				string playlistName = *++it;
 
+				cout << "Showing all tracks in user: " << userID << " Playlist: " << playlistName << endl;
+
 				db.showSongsInPlaylist(userID, playlistName);
 				break;
 			}
 
 				//if thing being shown is all recordings
 			else if (*it == "recordings" && tokens.size() == 2){
+
+				cout << "Showing all recordings." << endl;
 				db.showRecordingsWithoutTracks();
 				break;
 			}
 
 				//if thing being shown is all tracks
 			else if (*it == "tracks" && tokens.size() == 2){
+
+				cout << "Showing all tracks." << endl;
 				db.showTracks();
 				break;
 			}
@@ -252,10 +266,3 @@ void MyTunes::executeCommand(Command cmd){
 		}
 	}
 }
-
-
-
-
-
-
-

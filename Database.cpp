@@ -151,7 +151,7 @@ void Database::removeUserFromUsers(const string userID)
 			delete(users[i]);
 			users.erase(users.begin()+i);
 		}
-		else if(i==users.size()-1){cout<<"USER NOT FOUND"<<endl;}
+		else if(i==users.size()){cout<<"USER NOT FOUND"<<endl;}
 	}
 }
 void Database::removePlaylistFromUsers(const string userID, const string plName)
@@ -165,13 +165,15 @@ void Database::removePlaylistFromUsers(const string userID, const string plName)
 				if(users[i]->getPlaylists()[j]->getName() == plName)
 				{
 					delete(users[i]->getPlaylists()[j]);
-					users[i]->getPlaylists().erase( users[i]->getPlaylists().begin()+j);
+					users[i]->getPlaylists()[j]= users[i]->getPlaylists().back();
+					users[i]->getPlaylists().pop_back();
+
 				}
-				else if(i==users[i]->getPlaylists().size()-1){cout<<"PLAYLIST NOT FOUND"<<endl;}
+				else if(i==users[i]->getPlaylists().size()){cout<<"PLAYLIST NOT FOUND"<<endl;}
 
 			}
 		}
-		else if(i==users.size()-1){cout<<"USER NOT FOUND"<<endl;}
+		else if(i==users.size()){cout<<"USER NOT FOUND"<<endl;}
 
 	}
 
@@ -180,15 +182,20 @@ void Database::removeTrackFromPlaylistByName(const string userID, const string p
 {
 	for (int i = 0; i <users.size() ; ++i)
 	{
-		for (int j = 0; j <users[i]->getPlaylists().size() ; ++j)
+		if(users[i]->getName()== userID)
 		{
-			if(users[i]->getPlaylists()[j]->getName()==plName)
+
+			for (int j = 0; j <users[i]->getPlaylists().size() ; ++j)
 			{
-				for (int k = 0; k <users[i]->getPlaylists()[j]->getTracksInPlaylist().size() ; ++k)
+				if(users[i]->getPlaylists()[j]->getName()==plName)
 				{
-					if(users[i]->getPlaylists()[j]->getTracksInPlaylist()[k]->getSongID() == songID)
+					for (int k = 0; k <users[i]->getPlaylists()[j]->getTracksInPlaylist().size() ; ++k)
 					{
-						users[i]->getPlaylists()[j]->getTracksInPlaylist().erase(users[i]->getPlaylists()[j]->getTracksInPlaylist().begin()+k);
+						if(users[i]->getPlaylists()[j]->getTracksInPlaylist()[k]->getSongID() == songID)
+						{
+							users[i]->getPlaylists()[j]->getTracksInPlaylist()[k] = users[i]->getPlaylists()[j]->getTracksInPlaylist().back();
+							users[i]->getPlaylists()[j]->getTracksInPlaylist().pop_back();
+						}
 					}
 				}
 			}
@@ -279,11 +286,11 @@ void Database::showUsers()
 void Database::showUserPlaylists(string userID)
 {
 
-	for(int i=0; i < users.size(); i++){
+	for(auto& u: users){
 
-			if (users[i]->getUserID() == userID){
+			if (u->getUserID() == userID){
 
-				for(auto& p : users[i]->getPlaylists()){
+				for(auto& p : u->getPlaylists()){
 
 					cout << p->toString()<<endl;
 					break;
@@ -293,25 +300,23 @@ void Database::showUserPlaylists(string userID)
 }
 void Database::showSongsInPlaylist(string userID, string playlistName)
 {
+	string out;
 
-	for (int i=0; i < users.size();i++){
+	for (auto& u: users)
+	{
+		if (u->getUserID() == userID)
+		{
+			for (int j=0; j < u->getPlaylists().size();j++){
 
-		if (users[i]->getUserID() == userID){
+				if (u->getPlaylists()[j]->getName() == playlistName){
 
-			for (int j=0; j < users[i]->getPlaylists().size();j++){
-
-				if (users[i]->getPlaylists()[j]->getName() == playlistName){
-
-					vector<Track*> tracksInPlaylist = users[i]->getPlaylists()[j]->getTracksInPlaylist();
-
-					for(auto& t : tracksInPlaylist){
-
-						cout<<t->toString()<<endl;
-					}
+					out+= u->getPlaylists()[j]->toString();
 				}
 			}
 		}
 	}
+
+	cout<<out<<endl;
 }
 
 

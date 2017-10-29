@@ -13,7 +13,7 @@ Playlist::Playlist(string playlistName, int playlistID) {
 }
 
 Playlist::~Playlist() {
-   // cout << "DESTROYING A PLAYLIST!!!!"<<endl;
+   cout << "DESTROYING A PLAYLIST!!!!"<<endl;
 }
 Playlist::Playlist(Playlist &copy) {
     cout << "Copy constructor made.";
@@ -38,11 +38,11 @@ void Playlist::addTrackToPlaylist(Track* track) {
 string Playlist::toString() {
     string returnStr = "Displaying playlist: " + name + " ID: "  + to_string(id)+ "\n";
 
-    if(tracksInPlaylist.size()>0)
+    if(!tracksInPlaylist.empty())
     {
-        for (int i=0; i < tracksInPlaylist.size(); i++)
+        for(auto& t: tracksInPlaylist)
         {
-            returnStr += tracksInPlaylist[i]->toString() + "\n";
+            returnStr += t->toString() + "\n";
         }
     }
     else{

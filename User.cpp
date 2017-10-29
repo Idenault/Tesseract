@@ -48,7 +48,8 @@ void User::removePlaylist(string pLname)
         if(pLname == playlists[i]->getName())
         {
             delete(playlists[i]);
-            playlists.erase(playlists.begin()+i);
+            playlists[i]= playlists.back();
+            playlists.pop_back();
         }
 
     }

@@ -68,18 +68,14 @@ void Database::addPlaylistToUser(const string userID, const string plName, int p
 
 void Database::addTrackToRecording(const int albumID, const int songID){
 
-	if(tracks.find(songID) != tracks.end()){
-
-		for(int i=0; i < recordings.size(); i++){
-
-			if(recordings[i]->getAlbumID() == albumID){
-
-				recordings[i]->addTrack(tracks[songID]);
-			}
+	if(tracks.find(songID) != tracks.end())
+	{
+		if(recordings.find(albumID)!= recordings.end())
+		{
+			recordings[albumID]->addTrack(tracks[songID]);
 		}
 
 	}
-
 
 	else; // invalid track
 
@@ -121,14 +117,12 @@ void Database::removeTrackFromPlaylists(int songID)
 		}
 	}
 }
-
 void Database::removeTrack(int songID)
 {
 	removeTrackFromTrack(songID);
 	removeTrackFromPlaylists(songID);
 	removeTrackFromAllRecordings(songID);
 }
-
 void Database::removeSongFromSongs(int songID)
 {
 	if(songs.find(songID)!=songs.end())
@@ -138,13 +132,11 @@ void Database::removeSongFromSongs(int songID)
 	}
 
 }
-
 void Database::removeSong(int songID)
 {
 	removeSongFromSongs(songID);
 	removeTrack(songID);
 }
-
 void Database::removeUserFromUsers(const string userID)
 {
 	for (int i = 0; i <users.size(); ++i)
@@ -156,7 +148,6 @@ void Database::removeUserFromUsers(const string userID)
 		}
 	}
 }
-
 void Database::removePlaylistFromUsers(const string userID, const string plName)
 {
 	for (int i = 0; i <users.size(); ++i)
@@ -176,7 +167,6 @@ void Database::removePlaylistFromUsers(const string userID, const string plName)
 	}
 
 }
-
 void Database::removeTrackFromPlaylistByName(const string userID, const string plName, int songID)
 {
 	for (int i = 0; i <users.size() ; ++i)
@@ -197,7 +187,6 @@ void Database::removeTrackFromPlaylistByName(const string userID, const string p
 
 	}
 }
-
 void Database::removeTrackFromRecording(int albumID, int songID) {
 
 	for(int i=0; i < recordings.size(); i++){
@@ -214,7 +203,6 @@ void Database::removeTrackFromRecording(int albumID, int songID) {
 		}
 	}
 }
-
 void Database::removeTrackFromAllRecordings(int songID) {
 
 	for (int i = 0; i < recordings.size();i++){
@@ -245,7 +233,20 @@ void Database::showTracks()
 		cout<<kv.second->toString()<<endl;
 	}
 }
-void Database::showRecordingsWithTracks(){}
+void Database::showARecordingsWithTracks(int albumID)
+{
+	if(recordings.find(albumID)!=recordings.end())
+	{
+		cout<<recordings[albumID]->toStringWithTracks()<<endl;
+	}
+
+}
+void Database::showAllRecordingsWithTracks()
+{
+	for(auto& r : recordings){
+		cout<<r.second->toStringWithTracks()<<endl;
+	}
+}
 void Database::showRecordingsWithoutTracks()
 {
 	for(auto& kv: recordings)
@@ -260,7 +261,8 @@ void Database::showUsers()
 		cout<<u->toString()<<endl;
 	}
 }
-void Database::showUserPlaylists(string userID){
+void Database::showUserPlaylists(string userID)
+{
 
 	for(int i=0; i < users.size(); i++){
 
@@ -274,8 +276,8 @@ void Database::showUserPlaylists(string userID){
 		}
 	}
 }
-
-void Database::showSongsInPlaylist(string userID, string playlistName) {
+void Database::showSongsInPlaylist(string userID, string playlistName)
+{
 
 	for (int i=0; i < users.size();i++){
 

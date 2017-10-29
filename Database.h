@@ -43,7 +43,8 @@ public:
 	//Show methods
 	void showSongs();
 	void showTracks();
-	void showRecordingsWithTracks();
+	void showARecordingsWithTracks(int albumID);
+	void showAllRecordingsWithTracks();
 	void showRecordingsWithoutTracks();
 	void showUsers();
 	void showUserPlaylists(string userID);

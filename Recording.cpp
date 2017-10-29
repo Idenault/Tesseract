@@ -23,6 +23,24 @@ string Recording::toString() const
     return "ALBUM TITLE: " + formater.toTitleCase(title) + " ARTIST: " + formater.toTitleCase(artist) + " PRODUCER: " + producer + " YEAR: " + to_string(year) + " ID: " + to_string(albumID);
 }
 
+string Recording::toStringWithTracks() const
+{
+    string returnStr = "ALBUM TITLE: " + formater.toTitleCase(title) + " ARTIST: " + formater.toTitleCase(artist) + " PRODUCER: " + producer + " YEAR: " + to_string(year) + " ID: " + to_string(albumID) +"\n";
+    returnStr += "TRACKS: ";
+    returnStr += "\n";
+
+    if(!tracks.empty())
+    {
+        for(auto& t: tracks)
+        {
+            returnStr += t->toString();
+        }
+    }
+    else{returnStr += "this Recording is Empty";}
+
+    return returnStr;
+}
+
 int Recording::getAlbumID() const{
     return albumID;
 }

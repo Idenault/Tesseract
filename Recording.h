@@ -18,6 +18,7 @@ public:
 	~Recording();
 	int getAlbumID()const;
 	string toString()const;
+	string toStringWithTracks()const;
 	vector<Track*> getTracks();
 	void addTrack(Track* trackPointer);
 

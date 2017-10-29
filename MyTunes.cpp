@@ -62,6 +62,7 @@ void MyTunes::executeCommand(Command cmd){
 				//if thing being added is a track
 			else if(*it == "-t" && tokens.size() == 6){
 
+				it++;
 				int albumID = stoi(*++it);
 				int songID = stoi(*++it);
 				int trackNum = stoi(*++it);

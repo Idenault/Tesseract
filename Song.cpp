@@ -7,7 +7,7 @@ using namespace std;
 
 Song::Song(const string songTitle, const string songComposer, const int sID)
 {
-    cout << "BUILDING A SONG!!!"<<endl;
+   // cout << "BUILDING A SONG!!!"<<endl;
     titel = songTitle;
     composer = songComposer;
     id = sID;

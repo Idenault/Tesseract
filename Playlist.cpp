@@ -7,13 +7,13 @@
 using namespace std;
 
 Playlist::Playlist(string playlistName, int playlistID) {
-    cout << "BUILDING A PLAYLIST!!!!"<<endl;
+    //cout << "BUILDING A PLAYLIST!!!!"<<endl;
     name = playlistName;
     id = playlistID;
 }
 
 Playlist::~Playlist() {
-    cout << "DESTROYING A PLAYLIST!!!!"<<endl;
+   // cout << "DESTROYING A PLAYLIST!!!!"<<endl;
 }
 Playlist::Playlist(Playlist &copy) {
     cout << "Copy constructor made.";

@@ -6,7 +6,7 @@
 #include "User.h"
 
 User::User(const string id, const string name) {
-    cout << "BUILDING A USER!!!!"<<endl;
+    //cout << "BUILDING A USER!!!!"<<endl;
     userID = id;
     userName = name;
 }

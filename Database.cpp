@@ -40,13 +40,14 @@ void Database::addTrackToPlaylist(int songID, string userID, const string plName
 				{
 					if(users[i]->getPlaylists()[j]->getName() == plName)
 					{
-						users[i]->getPlaylists()[j]->addTrackToPlaylist(tracks[songID]); // need to reevalaute this cause we need to be able to serch tracks by track id
+						users[i]->getPlaylists()[j]->addTrackToPlaylist(tracks[songID]);
+						break;
 					}
-					else if(j==users[i]->getPlaylists().size()-1); {cout<<"PLAYLIST NOT FOUND, PLEASE CREATE A PLAYLIST FIRST"<<endl;}
+					//else if(j==users[i]->getPlaylists().size()-1); {cout<<"PLAYLIST NOT FOUND, PLEASE CREATE A PLAYLIST FIRST"<<endl;}
 
 				}
 			}
-			else if(i==users.size()-1){cout<<"USER NOT FOUND, USER MUST EXIST TO ADD TO A PLAYLIST"<<endl;}
+			else if(i==users.size()){cout<<"USER NOT FOUND, USER MUST EXIST TO ADD TO A PLAYLIST"<<endl;}
 		}
 	}
 	else{cout<<"TRACK NOT FOUND, IF YOU MUST CREATE A TRACK BEFORE YOU CAN ADD IT TO A PLAYLIST"<<endl;}
@@ -58,11 +59,12 @@ void Database::addPlaylistToUser(const string userID, const string plName, int p
 
 	for (int i = 0; i <users.size(); ++i)
 	{
-		if(users[i]->getUserID() == userID)
+		if(users[i]->getUserID()==userID)
 		{
-			users[i]->getPlaylists().push_back(new Playlist(plName,plID));
+			users[i]->addPlaylist(plName,plID);
+
 		}
-		else if(i==users.size()-1){cout<<"USER NOT FOUND, USER MUST EXIST TO ADD TO A PLAYLIST"<<endl;}
+		else if(i==users.size()){cout<<"USER NOT FOUND, USER MUST EXIST TO ADD TO A PLAYLIST"<<endl;}
 	}
 
 }
@@ -107,11 +109,13 @@ void Database::removeTrackFromPlaylists(int songID)
 	{
 		for (int j = 0; j <users[i]->getPlaylists().size() ; ++j)
 		{
+
 			for (int k = 0; k <users[i]->getPlaylists()[j]->getTracksInPlaylist().size() ; ++k)
 			{
 				if (users[i]->getPlaylists()[j]->getTracksInPlaylist()[k]->getSongID()==songID)
 				{
-					users[i]->getPlaylists()[j]->getTracksInPlaylist().erase(users[i]->getPlaylists()[j]->getTracksInPlaylist().begin()+k);
+					users[i]->getPlaylists()[j]->getTracksInPlaylist()[k] =users[i]->getPlaylists()[j]->getTracksInPlaylist().back();
+					users[i]->getPlaylists()[j]->getTracksInPlaylist().pop_back();
 				}
 			}
 		}
@@ -119,9 +123,10 @@ void Database::removeTrackFromPlaylists(int songID)
 }
 void Database::removeTrack(int songID)
 {
-	removeTrackFromTrack(songID);
+
 	removeTrackFromPlaylists(songID);
 	removeTrackFromAllRecordings(songID);
+	removeTrackFromTrack(songID);
 }
 void Database::removeSongFromSongs(int songID)
 {
@@ -134,8 +139,8 @@ void Database::removeSongFromSongs(int songID)
 }
 void Database::removeSong(int songID)
 {
-	removeSongFromSongs(songID);
 	removeTrack(songID);
+	removeSongFromSongs(songID);
 }
 void Database::removeUserFromUsers(const string userID)
 {
@@ -193,29 +198,35 @@ void Database::removeTrackFromPlaylistByName(const string userID, const string p
 }
 void Database::removeTrackFromRecording(int albumID, int songID) {
 
-	for(int i=0; i < recordings.size(); i++){
+	for(auto& r: recordings)
+	{
+		if (r.second->getAlbumID() == albumID)
+		{
+			for (int i = 0; i <r.second->getTracks().size() ; ++i)
+			{
+				if(r.second->getTracks()[i]->getSongID()==songID)
+				{
+					r.second->getTracks()[i] = r.second->getTracks().back();
+					r.second->getTracks().pop_back();
 
-		if (recordings[i]->getAlbumID() == albumID){
-
-			for(int j =0; j < recordings[i]->getTracks().size(); j++){
-
-				if(recordings[i]->getTracks()[j]->getSongID() == songID){
-
-					recordings[i]->getTracks().erase(recordings[i]->getTracks().begin() + j);
 				}
 			}
+
+
 		}
 	}
 }
 void Database::removeTrackFromAllRecordings(int songID) {
 
-	for (int i = 0; i < recordings.size();i++){
+	for(auto& r: recordings)
+	{
+		for(int j=0; j < r.second->getTracks().size(); j++){
 
-		for(int j=0; j < recordings[i]->getTracks().size(); j++){
+			if (r.second->getTracks()[j]->getSongID() == songID){
+				cout<<"mother Fucker";
 
-			if (recordings[i]->getTracks()[j]->getSongID() == songID){
-
-				recordings[i]->getTracks().erase(recordings[i]->getTracks().begin() + j);
+				r.second->getTracks()[j]=r.second->getTracks().back();
+				r.second->getTracks().pop_back();
 			}
 		}
 	}

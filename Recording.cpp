@@ -3,7 +3,7 @@
 
 Recording::Recording(const string t, const string a, const string p, int y, int aID)
 {
-    cout << "BUILDING A RECORDING!!!!"<<endl;
+    //cout << "BUILDING A RECORDING!!!!"<<endl;
     title =t;
     artist =a;
     producer = p;
@@ -15,7 +15,7 @@ Recording::Recording(Recording &copy){cout << "this Should not happen"<<endl;}
 
 Recording::~Recording()
 {
-    cout << "DESTROYING A RECORDING!!!!"<<endl;
+    //cout << "DESTROYING A RECORDING!!!!"<<endl;
 }
 
 string Recording::toString() const

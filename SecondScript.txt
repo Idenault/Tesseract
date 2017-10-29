@@ -61,9 +61,11 @@ delete -p "songs" "cindy"
 
 show songs "cindy" "songs"
 //   No songs in "cindy"'s playlist "shows" since playlist was just deleted.
-
+show songs "cindy" "help"
 
 
 //delete users
 delete -u "cindy"
+show users
+delete -u "gjones"
 show users

@@ -1,0 +1,58 @@
+//delete  //delete data from collections
+//    delete -s song_id 							//delete song from playlists, tracks, songs, and recordings
+//    delete -l song_id playlist_name user_id 	//delete song from playlist
+//    delete -r recording_id 						//delete recording
+//    delete -u user_id 							//delete user
+//   delete -p playist_name user_id 				//delete user playlist
+//   delete -t song_id recording_id				//delete track from recording
+
+
+
+//show stuff
+show songs
+show users
+show playlists "cindy"
+show playlists "gjones"
+show songs "cindy" "help"
+show recordings
+show tracks
+
+//delete songs
+delete -s 1022 "Hold Me Tight" "Paul McCartney, John Lennon"
+delete -s 1023 "I Wanna Be Your Man" "Paul McCartney, John Lennon"
+delete -s 1024 "Devil In Her Heart" "Richard Drapkin"
+delete -s 1025 "Not A Second Time" "Paul McCartney, John Lennon"
+delete -s 1026 "Money (That's What I Want)" "Janie Bradford, Berry Gordy"
+delete -s 1027 "A Hard Day's Night" "John Lennon, Paul McCartney"
+delete -s 1028 "I Should Have Known Better" "John Lennon, Paul McCartney"
+delete -s 1029 "If I Fell" "John Lennon, Paul McCartney"
+delete -s 1030 "I'm Happy Just To Dance With You" "John Lennon, Paul McCartney"
+
+//delete tracks from recordings
+//delete -t song_id recording_id
+delete -t 1000 100
+delete -t 1001 100
+delete -t 1002 100
+
+
+
+//delete recordings
+delete -r 106
+delete -r 107
+delete -r 108
+delete -r 109
+delete -r 110
+delete -r 111
+
+
+
+//delete songs from playlists
+//delete -l song_id playlist_name user_id
+
+//delete playlists
+
+
+
+
+//delete users
+

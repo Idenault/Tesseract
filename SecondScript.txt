@@ -36,15 +36,14 @@ delete -r 110
 delete -r 111
 
 
-
 //delete songs from playlists
 delete -l 1055 "help" "cindy"
 delete -l 1056 "help" "cindy"
 delete -l 1057 "help" "cindy"
 delete -l 1058 "help" "cindy"
 delete -l 1059 "help" "cindy"
-delete -l 1070 "ajones" "driving"
-delete -l 1070 "ajones" "favourites"
+delete -l 1070 "driving" "ajones"
+delete -l 1070 "favourites" "ajones"
 
 //delete playlists
 delete -p "songs" "cindy"
@@ -52,8 +51,8 @@ delete -p "songs" "cindy"
 
 show songs "cindy" "songs"
 //   No songs in "cindy"'s playlist "songs" since playlist was just deleted.
-show playlists "cindy"
-show songs "cindy" "help"
+show playlists "gjones"
+show songs "ajones" "mysongs"
 
 
 //delete users

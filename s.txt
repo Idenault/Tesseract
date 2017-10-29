@@ -52,7 +52,6 @@ delete -p "songs" "cindy"
 show songs "cindy" "songs"
 //   No songs in "cindy"'s playlist "songs" since playlist was just deleted.
 show playlists "gjones"
-show songs "ajones" "mysongs"
 
 
 //delete users
